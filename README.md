@@ -1,7 +1,9 @@
 # Vocal Companion
 
 Freeware modular vocal channel strip for post-recorded acoustic vocal, DI, and raw exports from vocal synth softwares.
-
+<p align="center">
+  <img src="screenshot.png" alt="Vocal Companion Screenshot" width="720" />
+</p>
 This Freeware was made by Crimson Redstone — consider supporting the project
 by purchasing music at [crimsonredstone.bandcamp.com](https://crimsonredstone.bandcamp.com).
 
