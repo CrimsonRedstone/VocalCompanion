@@ -10,6 +10,7 @@
 
 #include "DSP/FxExtras.h"
 #include "DSP/Cleanup.h"
+#include "DSP/WaveShaper.h"
 
 namespace vc
 {
@@ -26,10 +27,11 @@ inline const ModuleType kPalette[] = {
     ModuleType::RingMod, ModuleType::Bitcrush,
     ModuleType::Chorus, ModuleType::Phaser, ModuleType::Tremolo, ModuleType::AutoPan,
     ModuleType::Delay, ModuleType::Reverb,
-    ModuleType::BreathControl, ModuleType::VocalRider, ModuleType::PlosiveControl
+    ModuleType::BreathControl, ModuleType::VocalRider, ModuleType::PlosiveControl,
+    ModuleType::WaveShaper
 };
 
-inline constexpr int kPaletteCount = 24;
+inline constexpr int kPaletteCount = 25;
 
 class Chain
 {

@@ -90,6 +90,28 @@ int main (int argc, char** argv)
             juce::MessageManager::getInstance()->runDispatchLoopUntil (5);
         }
         {
+            auto module = vc::createModule (vc::ModuleType::WaveShaper);
+            module->prepare (48000.0, 128, 2);
+            module->setParam (0, 6.0f);
+            module->setParam (3, 0.7f);
+            module->setParam (4, 1.0f);
+            module->setParam (5, 4.0f);
+            juce::AudioBuffer<float> audio (2, 128);
+            for (int channel = 0; channel < audio.getNumChannels(); ++channel)
+                for (int sample = 0; sample < audio.getNumSamples(); ++sample)
+                    audio.setSample (channel, sample, 0.4f * std::sin (vc::kTwoPi * 220.0f * sample / 48000.0f));
+            module->process (audio);
+            for (int channel = 0; channel < audio.getNumChannels(); ++channel)
+                for (int sample = 0; sample < audio.getNumSamples(); ++sample)
+                    require (std::isfinite (audio.getSample (channel, sample)), "Waveshaper produced non-finite audio");
+            auto state = module->toValueTree();
+            auto restored = vc::createModule (vc::typeFromId (state["type"].toString()));
+            restored->fromValueTree (state);
+            require (restored->getType() == vc::ModuleType::WaveShaper
+                     && restored->getParam (5) == 4.0f && restored->getParam (4) == 1.0f,
+                     "Waveshaper state did not round-trip");
+        }
+        {
             auto m = vc::createModule(vc::ModuleType::Gain);
             auto telemetry = m->visual;
             auto card = std::make_unique<ModuleCard>(*m,proc,[]{},[]{});

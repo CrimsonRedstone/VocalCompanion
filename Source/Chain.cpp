@@ -12,6 +12,7 @@ std::unique_ptr<VcModule> createModule (ModuleType type)
         case ModuleType::BreathControl: return std::make_unique<BreathControlModule>();
         case ModuleType::VocalRider: return std::make_unique<VocalRiderModule>();
         case ModuleType::PlosiveControl: return std::make_unique<PlosiveControlModule>();
+        case ModuleType::WaveShaper:    return std::make_unique<WaveShaperModule>();
         case ModuleType::Gain:         return std::make_unique<GainModule>();
         case ModuleType::DeEsser:      return std::make_unique<DeEsserModule>();
         case ModuleType::FetComp:      return std::make_unique<FetCompModule>();

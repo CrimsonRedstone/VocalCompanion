@@ -1,4 +1,5 @@
 #include "UI/ModuleCard.h"
+#include "UI/WaveShaperVisualizer.h"
 #include "Host/ExternalHost.h"
 #include "PluginProcessor.h"
 
@@ -35,6 +36,8 @@ ModuleCard::ModuleCard (vc::VcModule& m, VocalCompanionProcessor& proc,
         graph = std::make_unique<EqPad> (m, false);
     else if (type == vc::ModuleType::ParaEq)
         graph = std::make_unique<EqPad> (m, true);
+    else if (type == vc::ModuleType::WaveShaper)
+        graph = std::make_unique<vc::WaveShaperVisualizer> (static_cast<vc::WaveShaperModule&> (m).getDsp());
     else
     {
         graph = std::make_unique<CurveView> (m);

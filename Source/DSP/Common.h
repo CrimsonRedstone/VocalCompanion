@@ -111,7 +111,8 @@ enum class ModuleType
     Aeterna,
     BreathControl,
     VocalRider,
-    PlosiveControl
+    PlosiveControl,
+    WaveShaper
 };
 
 inline juce::String typeId (ModuleType t)
@@ -121,6 +122,7 @@ inline juce::String typeId (ModuleType t)
         case ModuleType::BreathControl: return "breathcontrol";
         case ModuleType::VocalRider: return "vocalrider";
         case ModuleType::PlosiveControl: return "plosivecontrol";
+        case ModuleType::WaveShaper:     return "waveshaper";
         case ModuleType::Gain:          return "gain";
         case ModuleType::DeEsser:       return "deesser";
         case ModuleType::FetComp:       return "fetcomp";
@@ -155,6 +157,7 @@ inline juce::String typeName (ModuleType t)
         case ModuleType::BreathControl: return "BREATH CONTROL";
         case ModuleType::VocalRider: return "VOCAL RIDER";
         case ModuleType::PlosiveControl: return "PLOSIVE CONTROL";
+        case ModuleType::WaveShaper:     return "WAVE SHAPER";
         case ModuleType::Gain:          return "GAIN";
         case ModuleType::DeEsser:       return "DE-ESSER";
         case ModuleType::FetComp:       return "FET COMP";
@@ -189,6 +192,7 @@ inline ModuleColour typeColour (ModuleType t)
         case ModuleType::BreathControl: return {juce::Colour(0xff244442),juce::Colour(0xff32615e),juce::Colour(0xff8ce5ce)};
         case ModuleType::VocalRider: return {juce::Colour(0xff45401e),juce::Colour(0xff655c2b),juce::Colour(0xffe9d485)};
         case ModuleType::PlosiveControl: return {juce::Colour(0xff383450),juce::Colour(0xff514b70),juce::Colour(0xffbbaaf0)};
+        case ModuleType::WaveShaper:     return { juce::Colour (0xff4a3020), juce::Colour (0xff684328), juce::Colour (0xffffb060) };
         case ModuleType::Gain:          return { juce::Colour (0xff1a4a5c), juce::Colour (0xff2a6a82), juce::Colour (0xff3ec8e0) };
         case ModuleType::DeEsser:       return { juce::Colour (0xff16345c), juce::Colour (0xff1e4a84), juce::Colour (0xff5aa0ff) };
         case ModuleType::FetComp:       return { juce::Colour (0xff6a2030), juce::Colour (0xff8a3044), juce::Colour (0xffff6a82) };
@@ -258,6 +262,7 @@ inline ModuleType typeFromId (const juce::String& id)
     if (id == "breathcontrol") return ModuleType::BreathControl;
     if (id == "vocalrider") return ModuleType::VocalRider;
     if (id == "plosivecontrol") return ModuleType::PlosiveControl;
+    if (id == "waveshaper")    return ModuleType::WaveShaper;
     if (id == "deesser")      return ModuleType::DeEsser;
     if (id == "fetcomp")      return ModuleType::FetComp;
     if (id == "optocomp")     return ModuleType::OptoComp;
