@@ -121,4 +121,4 @@ their own licenses. JUCE and clap-juce-extensions are fetched at build time;
 Signalsmith license texts and pinned upstream references are included in
 [ThirdParty/](ThirdParty/).
 
-Music and project support: https://crimsonredstone.bandcamp.com
+Music and project support: https://crimsonredstone.bandcamp.com it's very cool :)
