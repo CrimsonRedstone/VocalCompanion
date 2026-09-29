@@ -96,6 +96,11 @@ int main (int argc, char** argv)
             module->setParam (3, 0.7f);
             module->setParam (4, 1.0f);
             module->setParam (5, 4.0f);
+            const float initialCurve = static_cast<vc::WaveShaperModule&> (*module).evaluateShape (0.65f);
+            module->setParam (5, 1.0f);
+            require (std::abs (static_cast<vc::WaveShaperModule&> (*module).evaluateShape (0.65f) - initialCurve) > 0.01f,
+                     "Waveshaper preview did not follow parameter edits");
+            module->setParam (5, 4.0f);
             juce::AudioBuffer<float> audio (2, 128);
             for (int channel = 0; channel < audio.getNumChannels(); ++channel)
                 for (int sample = 0; sample < audio.getNumSamples(); ++sample)

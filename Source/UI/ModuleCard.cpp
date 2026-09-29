@@ -37,7 +37,7 @@ ModuleCard::ModuleCard (vc::VcModule& m, VocalCompanionProcessor& proc,
     else if (type == vc::ModuleType::ParaEq)
         graph = std::make_unique<EqPad> (m, true);
     else if (type == vc::ModuleType::WaveShaper)
-        graph = std::make_unique<vc::WaveShaperVisualizer> (static_cast<vc::WaveShaperModule&> (m).getDsp());
+        graph = std::make_unique<vc::WaveShaperVisualizer> (static_cast<vc::WaveShaperModule&> (m));
     else
     {
         graph = std::make_unique<CurveView> (m);

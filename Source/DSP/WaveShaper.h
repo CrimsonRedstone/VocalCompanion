@@ -79,6 +79,11 @@ public:
     // Evaluate transfer function for UI plotting: input x in [-1.0, 1.0] -> y in [-1.0, 1.0]
     float evaluateShape(float x) const
     {
+        return evaluateShape (x, tension.load(), bipolar.load(), mode.load());
+    }
+
+    static float evaluateShape (float x, float tension, bool bipolar, WaveShaperMode mode)
+    {
         x = juce::jlimit(-1.0f, 1.0f, x);
         switch (mode)
         {
@@ -320,7 +325,11 @@ public:
         }
     }
 
-    const WaveShaperDSP& getDsp() const { return dsp; }
+    float evaluateShape (float x) const
+    {
+        return WaveShaperDSP::evaluateShape (x, tension.load(), asym.load() > 0.5f,
+                                             (WaveShaperMode) (int) mode.load());
+    }
 
 private:
     WaveShaperDSP dsp;

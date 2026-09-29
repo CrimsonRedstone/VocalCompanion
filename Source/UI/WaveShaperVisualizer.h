@@ -6,12 +6,13 @@
 namespace vc
 {
 
-class WaveShaperVisualizer : public juce::Component
+class WaveShaperVisualizer : public juce::Component, private juce::Timer
 {
 public:
-    WaveShaperVisualizer(const WaveShaperDSP& dspRef) : dsp(dspRef)
+    WaveShaperVisualizer(const WaveShaperModule& moduleRef) : module (moduleRef)
     {
         setOpaque(true);
+        startTimerHz (30);
     }
 
     void refresh()
@@ -45,7 +46,7 @@ public:
         {
             float normX = (float)i / (float)steps;
             float inSample = normX * 2.0f - 1.0f; // [-1.0 to +1.0]
-            float outSample = dsp.evaluateShape(inSample); // [-1.0 to +1.0]
+            float outSample = module.evaluateShape(inSample); // [-1.0 to +1.0]
 
             float px = bounds.getX() + normX * bounds.getWidth();
             // Flip y because screen coordinate y=0 is top
@@ -65,7 +66,9 @@ public:
     }
 
 private:
-    const WaveShaperDSP& dsp;
+    void timerCallback() override { repaint(); }
+
+    const WaveShaperModule& module;
 };
 
 } // namespace vc
