@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Vocal Companion
+Comment=Modular vocal effects by Crimson Redstone
+Exec=vocal-companion
+Icon=com.crimsonredstone.vocalcompanion
+Terminal=false
+Categories=AudioVideo;Audio;
